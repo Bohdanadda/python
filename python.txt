@@ -1,0 +1,58 @@
+#class Fruit:
+#    def __init__(self, color, weight):
+#        self.color = color
+#        self.weight = weight
+#        def __str__(self):
+#            return ("color "+str(self.color)+"\n weight "+str(self.weight))
+#        def __add__(self, other):
+#            return Fruit (' ',self.weight+other.weight)
+
+#my_fruit = Fruit('czerwony',350)
+#my_fruit2=Fruit('pomaranczowe', 250)
+#print(my_fruit.color)
+
+class Account:
+    def __init__(self,initial_balance=0):
+        self.balance=initial_balance
+
+    def deposit (self, amount):
+        self.balance += amount
+
+    def withdraw(self,amount):
+        if self.balance >= amount:
+            self.balance -= amount
+        else:
+            print("nie masz wiestarcejących śródkow na koncie")
+
+    def transfer(self, amount, to_accoumt):
+        if self.balance >= amount:
+            self.balance -= amount
+            to_accoumt.deposit(amount)
+        else:
+            print("nie masz wiestarcejących śródkow na koncie")
+    def transfer_external(self,amount):
+        if self.balance>=amount:
+            self.balance -=amount
+            print("Przelew wykonany pomyślnie")
+        else:
+            print("nie masz wiestarcejących śródkow na koncie")
+
+    def __str__(self):
+        return f"Saldo:{self.balance}zł"
+konto1=Account(150)
+print(konto1)
+konto1.deposit(500)
+konto2=Account(50)
+print(konto2)
+konto2.withdraw(200)
+konto3=Account(100)
+print(konto3)
+konto3.transfer_external(2000)
+
+class Account:
+    def __init__(self,name,balance):
+        self.name = name
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
