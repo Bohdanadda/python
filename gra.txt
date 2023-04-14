@@ -1,0 +1,53 @@
+import random
+
+class Bohater:
+    def __init__(self,imie,życia,punkty_takteki):
+        self.imie = imie
+        self.zycia = życia
+        self.punkty_takteki  = punkty_takteki
+
+    def zmień_życia(self,zmiana_zycia):
+        self.życia += zmiana_zycia
+        if self.zycia < 0:
+            self.zycia = 0
+        elif self.zycia > 100:
+            self.zycia = 100
+
+    def atakuj(self):
+        pass
+
+class Lucznik(Bohater):
+    def __init__(self, imie, żytownosc, przetnosc, punkty_ataki):
+        super().__init__(imie,100, punkty_ataki)
+        self.żytownosc = żytownosc
+        self.przetnosc = przetnosc
+
+    def atakuj(self):
+        moc_ataki = (self.przetnosc / 100) * self.punkty_takteki * (random.randint(1, 101) <= self.żytownosc)
+        return moc_ataki
+
+class Wojownik (Bohater):
+    def __init__(self,imie,zywotnosc,sila,punkty_takteki):
+        super().__init__(imie,zywotnosc,punkty_takteki)
+        self.sila = sila
+
+    def zmień_życia(self,zmiana_zycia):
+        super().zmień_życia(zmiana_zycia)
+        if self.zycia < 20:
+            self.rywlnosc = 150
+
+    def atakuj(self):
+        moc_ataku = self.sila *self.punkty_takteki
+        return moc_ataku
+
+lucznik1 = Lucznik("damian",80,50,10)
+wojowik1 = Wojownik("kuba", 100, 30,15)
+
+print(lucznik1.imie, lucznik1.zycia,lucznik1.punkty_takteki,lucznik1.żytownosc,lucznik1.przetnosc)
+print(wojowik1.imie,wojowik1.zycia,wojowik1.punkty_takteki,wojowik1.sila)
+
+moc_ataki_lucznika = lucznik1.atakuj()
+moc_ataki_wojownika = wojowik1.atakuj()
+
+print(moc_ataki_lucznika)
+print(moc_ataki_wojownika)
